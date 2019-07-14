@@ -1,0 +1,7 @@
+<div id="videoContainer" class="videoContainer">
+  <youtube-player
+    [videoId]="id"
+    (ready)="savePlayer($event)"
+    (change)="onStateChange($event)"
+  ></youtube-player>
+</div>

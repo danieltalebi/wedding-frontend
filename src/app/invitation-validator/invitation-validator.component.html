@@ -1,0 +1,43 @@
+<!--<div class="signindiv text-center main">
+  <form [formGroup]="validationForm" (ngSubmit)="onSubmit(validationForm.value)" class="form-signin">
+    <h1 class="h3 mb-3 font-weight-normal">Aloha!</h1>
+    <h3>Si llegaste acá, te puedo mostrar algo peeeero solo algunas personas lo pueden ver</h3>
+    <input type="text" formControlName="code" class="form-control" placeholder="Ingrese el código que te mandaron" required autofocus>
+    <button type="submit" class="btn btn-outline-info">A ver...</button>
+    <div *ngIf="showWarningLabel" class="alert alert-danger" role="alert">Mmmm.... ese código parece medio trucho</div>
+  </form>
+</div>-->
+
+
+<div class="main">
+
+
+  <div class="container">
+
+    <p class="mainLabel"style="display: block">Hola!</p>
+    <div class="middle">
+      <div id="login">
+
+          <form [formGroup]="validationForm" (ngSubmit)="onSubmit(validationForm.value)">
+            <fieldset class="clearfix">
+              <p ><input type="text" formControlName="code"  placeholder="Ingresa tu código aqui" required></p> <!-- JS because of IE support; better: placeholder="Username" -->
+
+              <div>
+                <span style="width:50%; text-align:right;  display: flex;"><input type="submit" value="Mostrame!"></span>
+              </div>
+
+            </fieldset>
+            <div class="clearfix"></div>
+          </form>
+
+          <div class="clearfix"></div>
+
+        </div> <!-- end login -->
+        <div class="logo">Tenemos algo para mostrarte... <div class="clearfix"></div>
+        </div>
+
+      </div>
+    <div *ngIf="showWarningLabel" class="alert alert-danger" role="alert">Mmmm.... ese código parece medio trucho</div>
+  </div>
+
+</div>
