@@ -11,7 +11,7 @@ import {Component, EventEmitter, Injectable, OnInit, Output} from '@angular/core
 export class VideoPlayerComponent implements OnInit {
 
   player: YT.Player;
-  private id = 'ufuD50wC25w';
+  id = 'ufuD50wC25w';
   @Output()
   notify = new EventEmitter();
 
