@@ -22,7 +22,7 @@ export class VideoPlayerComponent implements OnInit {
 
   playVideo() {
     if (this.player != null) {
-      this.player.playVideo();
+      this.playVideoOnFullScreen(this.player);
     }
   }
 

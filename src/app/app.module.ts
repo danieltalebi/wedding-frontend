@@ -10,6 +10,7 @@ import { NgxYoutubePlayerModule } from 'ngx-youtube-player';
 import { VideoPlayerComponent } from './video-player/video-player.component';
 import { InvitationValidatorComponent } from './invitation-validator/invitation-validator.component';
 import { LandingComponent } from './landing/landing.component';
+import { InvitationDetailsComponent } from './invitation-details/invitation-details.component';
 
 
 @NgModule({
@@ -18,7 +19,8 @@ import { LandingComponent } from './landing/landing.component';
     InvitationsComponent,
     VideoPlayerComponent,
     InvitationValidatorComponent,
-    LandingComponent
+    LandingComponent,
+    InvitationDetailsComponent
   ],
   imports: [
     BrowserModule,

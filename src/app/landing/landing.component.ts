@@ -9,9 +9,9 @@ import {VideoPlayerComponent} from '../video-player/video-player.component';
 })
 export class LandingComponent implements OnInit {
 
-  message = '';
   showCodeValidatorContainer = true;
   showVideoContainer = false;
+  showInvitationDetailsContainer = false;
 
   constructor(private invitationValidator: InvitationValidatorComponent,
               private videoPlayer: VideoPlayerComponent) { }
@@ -27,6 +27,6 @@ export class LandingComponent implements OnInit {
 
   onVideoFinished() {
     this.showVideoContainer = false;
-    this.message = 'All Good';
+    this.showInvitationDetailsContainer = true;
   }
 }
