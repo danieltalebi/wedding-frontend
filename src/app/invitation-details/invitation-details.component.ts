@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 
 
 declare const Waypoint: any;
+declare const simplyCountdown: any;
 
 @Component({
   selector: 'app-invitation-details',
@@ -18,7 +19,13 @@ export class InvitationDetailsComponent implements OnInit {
     for (const item of items) {
       this.createWaypoint(item);
     }
+    const weddingDate = new Date(2019, 9, 12, 18, 0, 0);
 
+    simplyCountdown('.simply-countdown-one', {
+      year: weddingDate.getFullYear(),
+      month: weddingDate.getMonth() + 1,
+      day: weddingDate.getDate()
+    });
   }
 
   createWaypoint(item: Element) {
