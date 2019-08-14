@@ -1,8 +1,32 @@
-<div class="content">
-  <div class="title">Esto te puede interesar...</div>
-  <form [formGroup]="validationForm" (ngSubmit)="onSubmit(validationForm.value)">
-    <input type="text" formControlName="code"  placeholder="Ingresa tu código aquí" required/>
-    <input class="submit" type="submit" value="Dale Gas!">
-  </form>
-</div>
+<div id="code-validator-landing">
+  <video playsinline autoplay muted loop id="myVideo" #myVideo poster="../../assets/images/landingVideoPoster.jp2">
+    <source src="../../assets/videos/landingVideo.mp4" type="video/mp4">
+  </video>
+  <div class="overlay"></div>
+  <div class="container">
+    <div class="row animate-box fadeInUp animated">
+      <div class="col-md-8 col-md-offset-2 text-center section-heading">
+        <h2>¿Estás listo para ver el video?</h2>
+        <p>Solo personas que hayan recibido el código pueden continuar</p>
+      </div>
+    </div>
+    <div class="row animate-box fadeInUp animated">
+      <div class="col-md-10 col-md-offset-1">
+        <form class="form-inline" [formGroup]="validationForm" (ngSubmit)="onSubmit(validationForm.value)">
+          <div class="col-md-4 col-sm-4">
+            <div class="form-group">
+              <input formControlName="code" class="form-control" (focus)="playVideoIfPaused()" placeholder="Ingresa tu código aquí">
+              <div *ngIf="showWarningLabel" class="col-sm-4">
+                <small class="text-danger">El código ingresado no es válido</small>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4 col-sm-4">
+            <input type="submit" class="btn btn-default btn-block" value="Ingresar">
+          </div>
 
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

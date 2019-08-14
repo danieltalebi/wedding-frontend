@@ -823,6 +823,9 @@ form label {
   font-weight: normal !important;
 }
 
+#fh5co-header {
+  background-position: center center;
+}
 #fh5co-header .display-tc,
 #fh5co-counter .display-tc,
 .fh5co-cover .display-tc {
@@ -940,8 +943,8 @@ form label {
 .simply-countdown > .simply-section {
   /* coutndown blocks */
   display: inline-block;
-  width: 100px;
-  height: 100px;
+  width: 75px;
+  height: 75px;
   background: rgba(241, 78, 149, 0.8);
   margin: 0 4px;
   -webkit-border-radius: 50%;
@@ -950,6 +953,10 @@ form label {
   border-radius: 50%;
   position: relative;
   animation: pulse 1s ease infinite;
+}
+
+@media  {
+
 }
 
 @keyframes pulse {
@@ -967,8 +974,8 @@ form label {
   /* countdown block inner div */
   display: table-cell;
   vertical-align: middle;
-  height: 100px;
-  width: 100px;
+  height: 70px;
+  width: 70px;
 }
 
 .simply-countdown > .simply-section .simply-amount,
@@ -979,7 +986,7 @@ form label {
 }
 
 .simply-countdown > .simply-section .simply-amount {
-  font-size: 30px;
+  font-size: 20px;
   /* amounts */
 }
 
@@ -988,6 +995,20 @@ form label {
   text-transform: uppercase;
   font-size: 12px;
   /* words */
+}
+
+@media screen and (min-width: 650px) {
+
+  .simply-countdown > .simply-section > div {
+    height: 100px;
+    width: 100px;
+  }
+
+  .simply-countdown > .simply-section .simply-amount {
+    font-size: 30px;
+    /* amounts */
+  }
+
 }
 
 #fh5co-testimonial,

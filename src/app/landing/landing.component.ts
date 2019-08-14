@@ -9,9 +9,9 @@ import {VideoPlayerComponent} from '../video-player/video-player.component';
 })
 export class LandingComponent implements OnInit {
 
-  showCodeValidatorContainer = false;
+  showCodeValidatorContainer = true;
   showVideoContainer = false;
-  showInvitationDetailsContainer = true;
+  showInvitationDetailsContainer = false;
 
   constructor(private invitationValidator: InvitationValidatorComponent,
               private videoPlayer: VideoPlayerComponent) { }

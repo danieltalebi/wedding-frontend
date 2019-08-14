@@ -246,5 +246,3 @@ function simplyCountdown (elt, args) {
     interval = window.setInterval(refresh, parameters.refresh);
   });
 };
-
-exports.simplyCountdown = simplyCountdown;

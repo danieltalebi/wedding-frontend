@@ -1,146 +1,105 @@
-/*Based on https://fribly.com/2015/01/09/login-page-blur-background/*/
-@import url(https://fonts.googleapis.com/css?family=Dosis:300|Lato:300,400,600,700|Roboto+Condensed:300,700|Open+Sans+Condensed:300,600|Open+Sans:400,300,600,700|Maven+Pro:400,700);
-@import url("https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css");
-
-* {
-  -moz-box-sizing: border-box;
-  -webkit-box-sizing: border-box;
-  box-sizing: border-box;
-}
-
-html {
-  background: black;
-}
-
-body {
-  font-family: "Open Sans";
-  font-size: 16px;
-  color: White;
-  font-smoothing: antialiased;
-  font-weight: 600;
+#code-validator-landing {
+  height: 100%;
+  width: 100%;
 }
 
 
-.content:before {
-  content: "";
-  position: fixed;
+#myVideo {
+object-fit: cover;
+background-size: cover;
+width:100%;
+height: 100%;
+position: absolute;
+top: 0;
+left: 0;
+}
+
+
+.overlay {
+  position: absolute;
+  top: 0;
   left: 0;
   right: 0;
-  top: 0;
   bottom: 0;
-  z-index: -1;
-  display: block;
-  background-color: black;
-  background-image: url("https://images.fineartamerica.com/images/artworkimages/mediumlarge/1/1-sydney-opera-house-sheila-smart.jpg");
-  background-position: center;
-  background-repeat: no-repeat;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.section-heading {
+  margin-bottom: 5em;
+}
+
+.section-heading h2 {
+  font-size: 60px;
+  margin-bottom: 10px;
+  line-height: 1.5;
+  font-weight: bold;
+  color: #ffffff;
+  font-family: "Sacramento", Arial, serif;
+}
+
+.section-heading p {
+  font-size: 18px;
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.form-control {
+  background: rgba(255, 255, 255, 0.2);
+  border: none !important;
+  color: #fff;
+  font-family: "Work Sans", Arial, sans-serif;
+  font-size: 16px !important;
   width: 100%;
-  height: 100%;
-  background-size: cover;
-  -webkit-filter: blur(2px);
-  -moz-filter: blur(2px);
-  -o-filter: blur(2px);
-  -ms-filter: blur(2px);
-  filter: blur(2px);
+  -webkit-transition: 0.5s;
+  -o-transition: 0.5s;
+  transition: 0.5s;
 }
 
-.content {
-  width: unset;
-  height: 340px;
-  background-color: rgba(10, 10, 10, 0.5);
-  margin: 14rem auto;
-  padding: 14rem 40px;
-  -moz-border-radius: 4px;
-  -webkit-border-radius: 4px;
-  border-radius: 4px;
-  -moz-box-shadow: 0 0 10px black;
-  -webkit-box-shadow: 0 0 10px black;
-  box-shadow: 0 0 10px black;
-
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+#code-validator-landing .form-control::-webkit-input-placeholder {
+  color: #fff;
+}
+#code-validator-landing .form-control:-moz-placeholder {
+  /* Firefox 18- */
+  color: #fff;
+}
+#code-validator-landing .form-control::-moz-placeholder {
+  /* Firefox 19+ */
+  color: #fff;
+}
+#code-validator-landing .form-control:-ms-input-placeholder {
+  color: #fff;
 }
 
-@media screen and (min-width: 650px) {
-  .content {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    max-width: 700px;
-
-  }
+.form-group .sr-only {
+  font-weight: normal !important;
 }
 
-.content .title {
-  text-align: center;
-  font-size: 2.0rem;
-  font-weight: 600;
-  padding-bottom: 30px;
-  color: white;
+.btn {
+  margin-right: 4px;
+  margin-bottom: 4px;
+  font-family: "Work Sans", Arial, sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  -webkit-border-radius: 30px;
+  -moz-border-radius: 30px;
+  -ms-border-radius: 30px;
+  border-radius: 30px;
+  -webkit-transition: 0.5s;
+  -o-transition: 0.5s;
+  transition: 0.5s;
+  padding: 8px 20px;
+
+  height: 54px;
+  border: none !important;
+  background: #F14E95;
+  color: #fff;
+  font-size: 16px;
+  text-transform: uppercase;
+  font-weight: 400;
+  padding-left: 50px;
+  padding-right: 50px;
 }
 
-.content input {
-  width: 100%;
-  font-size: 1.2rem;
-  font-family: "Open Sans";
-  margin: 10px 0px;
-  border: none;
-  padding: 10px;
-  -moz-border-radius: 4px;
-  -webkit-border-radius: 4px;
-  border-radius: 4px;
-}
-
-.content input[type=checkbox] {
-  display: none;
-}
-
-.content label {
-  display: inline-block;
-  width: 20px;
-  height: 20px;
-  cursor: pointer;
-  position: relative;
-  margin-left: 5px;
-  margin-right: 10px;
-  top: 5px;
-}
-
-.content label:before {
-  content: "";
-  display: inline-block;
-  width: 20px;
-  height: 20px;
-  -moz-border-radius: 3px;
-  -webkit-border-radius: 3px;
-  border-radius: 3px;
-  position: absolute;
-  left: 0;
-  bottom: 1px;
-  background-color: #aaa;
-  -moz-box-shadow: inset 0px 2px 3px 0px rgba(0, 0, 0, 0.3), 0px 1px 0px 0px rgba(255, 255, 255, 0.8);
-  -webkit-box-shadow: inset 0px 2px 3px 0px rgba(0, 0, 0, 0.3), 0px 1px 0px 0px rgba(255, 255, 255, 0.8);
-  box-shadow: inset 0px 2px 3px 0px rgba(0, 0, 0, 0.3), 0px 1px 0px 0px rgba(255, 255, 255, 0.8);
-}
-
-
-.content .submit {
-  width: 100%;
-  font-size: 1.1rem;
-  padding: 10px;
-  margin: 20px 0px;
-  background-color: #66A756;
-  color: White;
-  border: none;
-  -moz-border-radius: 4px;
-  -webkit-border-radius: 4px;
-  border-radius: 4px;
-}
-
-.content .already {
-  text-align: center;
-  font-size: 0.9rem;
+.text-danger {
+  font-size: 18px;
 }

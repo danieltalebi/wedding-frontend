@@ -1,4 +1,14 @@
-import {Component, EventEmitter, Injectable, OnInit, Optional, Output} from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  ElementRef,
+  EventEmitter,
+  Injectable,
+  OnInit,
+  Optional,
+  Output,
+  ViewChild
+} from '@angular/core';
 import {Observable} from 'rxjs';
 import {InvitationsService} from './invitations.service';
 import {Invitation, InvitationSource, Status} from '../model/Invitation';
@@ -13,7 +23,7 @@ import {FormBuilder, FormGroup} from '@angular/forms';
   templateUrl: './invitation-validator.component.html',
   styleUrls: ['./invitation-validator.component.css']
 })
-export class InvitationValidatorComponent implements OnInit {
+export class InvitationValidatorComponent implements OnInit, AfterViewInit {
 
   invitationCode = '';
   inviteesNumber = 0;
@@ -22,12 +32,12 @@ export class InvitationValidatorComponent implements OnInit {
 
   backendInvitations: Invitation[];
   temporaryInvitations: Invitation[] = [{
-    id: 'abc',
+    id: 'ABC',
     invitees: 0,
     status: Status.PENDING,
     source: InvitationSource.FRONTEND
   }, {
-    id: 'def',
+    id: 'DEF',
     invitees: 1,
     status: Status.PENDING,
     source: InvitationSource.FRONTEND
@@ -35,6 +45,8 @@ export class InvitationValidatorComponent implements OnInit {
 
   @Output()
   notify = new EventEmitter();
+
+  @ViewChild('myVideo', {static: false}) myVideo: ElementRef;
 
   constructor(private invitationsService: InvitationsService,
               private formBuilder: FormBuilder) {
@@ -48,8 +60,12 @@ export class InvitationValidatorComponent implements OnInit {
       .subscribe((data: Invitation[]) => this.backendInvitations = data);
   }
 
-  onSubmit(customerData) {
-    const invitation = this.findInvitation(customerData.code);
+  ngAfterViewInit(): void {
+    this.playVideoIfPaused();
+  }
+
+  onSubmit(formData) {
+    const invitation = this.findInvitation(formData.code);
     if (invitation != null) {
       this.notify.emit();
       this.showWarningLabel = false;
@@ -75,7 +91,7 @@ export class InvitationValidatorComponent implements OnInit {
 
   findInvitation(invitationCode: string): Invitation {
     const invitationList = this.backendInvitations != null ? this.backendInvitations : this.temporaryInvitations;
-    return invitationList.find(invitation => invitation.id === invitationCode);
+    return invitationList.find(invitation => invitation.id.toUpperCase() === invitationCode.toUpperCase());
   }
 
   /*retrieveInvitations() {
@@ -101,4 +117,12 @@ export class InvitationValidatorComponent implements OnInit {
       });
 
   }*/
+
+  playVideoIfPaused() {
+    if (!!this.myVideo.nativeElement) {
+      this.myVideo.nativeElement.play();
+    }
+  }
+
+
 }
