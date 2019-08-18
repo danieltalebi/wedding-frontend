@@ -1,9 +1,11 @@
+import { Invitation } from './../model/Invitation';
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
-import {Invitation} from '../model/Invitation';
+import {map, catchError} from 'rxjs/operators';
 
-export const apiURL = 'http://www.mocky.io/v2/5d0f526f3200005c00dc69df';
+export const herokuAPIUrl = 'https://wedding-backend-arg.herokuapp.com/invitations?page=0&size=1000&projection=InvitationProjection';
+export const localhostAPIUrl = 'http://localhost:9002/invitations';
 
 @Injectable({
   providedIn: 'root'
@@ -14,11 +16,12 @@ export class InvitationsService  {
   }
 
   fetchInvitations(): Observable<Invitation[]> {
-    return this.httpClient.get<Invitation[]>(apiURL);
-  }
-
-  findInvitation(invitationCode: string): Observable<Invitation> {
-    return this.httpClient.get<Invitation>('http://www.mocky.io/v2/5d15d7e50e00002332a11555');
+    console.log('Fetching Invitations');
+    return this.httpClient.get<Invitation[]>(herokuAPIUrl, {})
+    .pipe(
+      map(res => res._embedded.invitations || []),
+      catchError(error => console.log(error.message || error))
+    );
   }
 
 }

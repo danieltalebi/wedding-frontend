@@ -1,7 +1,9 @@
 export interface Invitation {
-  id: string;
+  code: string;
+  displayName: string;
+  numberOfInviteesAllowed: number;
+  inviteesConfirmed: number;
   status: Status;
-  invitees: number;
   source: InvitationSource;
 }
 

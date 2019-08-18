@@ -28,29 +28,15 @@ export class InvitationsComponent implements OnInit {
   }
 
   retrieveInvitations() {
+    console.log('Retrieving Invitations from Heroku');
     const invitationsObservable: Observable<Invitation[]> = this.invitationsService.fetchInvitations();
     invitationsObservable.subscribe(
-      (data: Invitation[]) => this.invitationList = data);
-  }
-
-  findInvitation() {
-    console.log('defaultValue is ' + this.invitationCode);
-    const invitationObservable = this.invitationsService.findInvitation(this.invitationCode);
-    invitationObservable.subscribe(
-      (data: Invitation) => {
-        if (data != null) {
-          this.inviteesNumber = data.invitees;
-          this.showVideo();
-        } else {
-          this.warningLabel = 'Could not find Invitation ' + this.invitationCode;
-        }
-      },
-      (error) => {
-        console.log('The error is ' + error.message);
-        this.warningLabel = 'Sorry we couldn\'t find your invitation :(';
+      (data: Invitation[]) => {
+        console.log('Invitation retrieved successfully');
+        this.invitationList = data;
       });
-
   }
+
 
   showVideo() {
     this.hideCodeValidationDiv = true;

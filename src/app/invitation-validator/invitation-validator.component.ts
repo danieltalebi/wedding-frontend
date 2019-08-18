@@ -25,20 +25,22 @@ import {FormBuilder, FormGroup} from '@angular/forms';
 })
 export class InvitationValidatorComponent implements OnInit, AfterViewInit {
 
-  invitationCode = '';
-  inviteesNumber = 0;
   showWarningLabel = false;
   validationForm: FormGroup;
 
   backendInvitations: Invitation[];
   temporaryInvitations: Invitation[] = [{
-    id: 'ABC',
-    invitees: 0,
+    code: 'ABC',
+    displayName: 'Display Name',
+    numberOfInviteesAllowed: 10,
+    inviteesConfirmed: 0,
     status: Status.PENDING,
     source: InvitationSource.FRONTEND
   }, {
-    id: 'DEF',
-    invitees: 1,
+    code: 'ABC2',
+    displayName: 'Display Name',
+    numberOfInviteesAllowed: 10,
+    inviteesConfirmed: 0,
     status: Status.PENDING,
     source: InvitationSource.FRONTEND
   }];
@@ -75,48 +77,12 @@ export class InvitationValidatorComponent implements OnInit, AfterViewInit {
     this.validationForm.reset();
   }
 
-  validateInvitationCode() {
-    const invitation = this.findInvitation(this.invitationCode);
-    if (invitation != null) {
-      this.notify.emit();
-    } else {
-      this.showWarningLabel = true;
-      this.invitationCode = '';
-    }
-  }
-
-  hideWarningLabel() {
-    this.showWarningLabel = false;
-  }
 
   findInvitation(invitationCode: string): Invitation {
     const invitationList = this.backendInvitations != null ? this.backendInvitations : this.temporaryInvitations;
-    return invitationList.find(invitation => invitation.id.toUpperCase() === invitationCode.toUpperCase());
+    return invitationList.find(invitation => invitation.code.toUpperCase() === invitationCode.toUpperCase());
   }
 
-  /*retrieveInvitations() {
-    const invitationsObservable: Observable<Invitation[]> = this.invitationsService.fetchInvitations();
-  }*/
-
-  /*findInvitation() {
-    console.log('defaultValue is ' + this.invitationCode);
-    const invitationObservable = this.invitationsService.findInvitation(this.invitationCode);
-    invitationObservable.subscribe(
-      (data: Invitation) => {
-        if (data != null) {
-          this.inviteesNumber = data.invitees;
-          // this.showVideo();
-          this.notify.emit();
-        } else {
-          this.warningLabel = 'Could not find Invitation ' + this.invitationCode;
-        }
-      },
-      (error) => {
-        console.log('The error is ' + error.message);
-        this.warningLabel = 'Sorry we couldn\'t find your invitation :(';
-      });
-
-  }*/
 
   playVideoIfPaused() {
     if (!!this.myVideo.nativeElement) {
