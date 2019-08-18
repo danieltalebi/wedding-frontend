@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {InvitationValidatorComponent} from '../invitation-validator/invitation-validator.component';
 import {VideoPlayerComponent} from '../video-player/video-player.component';
+import { Invitation } from '../model/Invitation';
+import { InvitationDetailsComponent } from '../invitation-details/invitation-details.component';
 
 @Component({
   selector: 'app-landing',
@@ -9,17 +11,19 @@ import {VideoPlayerComponent} from '../video-player/video-player.component';
 })
 export class LandingComponent implements OnInit {
 
-  showCodeValidatorContainer = true;
+  showCodeValidatorContainer = false;
   showVideoContainer = false;
-  showInvitationDetailsContainer = false;
+  showInvitationDetailsContainer = true;
 
   constructor(private invitationValidator: InvitationValidatorComponent,
-              private videoPlayer: VideoPlayerComponent) { }
+              private videoPlayer: VideoPlayerComponent,
+              private invitationDetails: InvitationDetailsComponent) { }
 
   ngOnInit() {
   }
 
-  onValidationSuccessful() {
+  onValidationSuccessful(invitation: Invitation) {
+    this.invitationDetails.invitation = invitation;
     this.showCodeValidatorContainer = false;
     this.showVideoContainer = true;
     this.videoPlayer.playVideo();

@@ -46,7 +46,7 @@ export class InvitationValidatorComponent implements OnInit, AfterViewInit {
   }];
 
   @Output()
-  notify = new EventEmitter();
+  notify = new EventEmitter<Invitation>();
 
   @ViewChild('myVideo', {static: false}) myVideo: ElementRef;
 
@@ -69,7 +69,7 @@ export class InvitationValidatorComponent implements OnInit, AfterViewInit {
   onSubmit(formData) {
     const invitation = this.findInvitation(formData.code);
     if (invitation != null) {
-      this.notify.emit();
+      this.notify.emit(invitation);
       this.showWarningLabel = false;
     } else {
       this.showWarningLabel = true;

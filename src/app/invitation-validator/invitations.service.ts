@@ -24,4 +24,8 @@ export class InvitationsService  {
     );
   }
 
+  confirmAssistance(invitationCode: string, numberOfInviteesConfirmed: number) {
+    console.log('Confirming ' + numberOfInviteesConfirmed + ' invitess for Invitation Code ' + invitationCode);
+  }
+
 }
