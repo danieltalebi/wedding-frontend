@@ -17,10 +17,10 @@ export class InvitationsService  {
 
   fetchInvitations(): Observable<Invitation[]> {
     console.log('Fetching Invitations');
-    return this.httpClient.get<Invitation[]>(herokuAPIUrl, {})
+    return this.httpClient.get<any>(herokuAPIUrl, {})
     .pipe(
       map(res => res._embedded.invitations || []),
-      catchError(error => console.log(error.message || error))
+      catchError(error => error.message || error)
     );
   }
 
