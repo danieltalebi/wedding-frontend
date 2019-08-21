@@ -1,0 +1,42 @@
+<div id="fh5co-started" class="fh5co-bg" style="background-image:url(../../assets/images/img_bg_4.jpg);">
+    <div class="overlay"></div>
+    <div class="container">
+        <div class="row animate-box">
+            <div *ngIf="showConfirmationForm()">
+                <div class="col-md-8 col-md-offset-2 text-center fh5co-heading">
+                    <h2>Confirma tu asistencia</h2>
+                    <p>Con cuántas personas vas a vernir?</p>
+                </div>
+                
+                <div *ngIf="showConfirmationForm()">
+                    <div class="col-md-10 col-md-offset-1">
+                        <form class="form-inline" [formGroup]="validationForm" (ngSubmit)="onSubmit(validationForm.value)">
+                            <div class="col-md-4 col-sm-4">
+                                <div class="form-group">
+                                    <select class="form-control" formControlName=inviteesConfirmed>
+                                        <option value="0">No podré ir, soy pollerudo/a</option>
+                                        <option *ngFor="let number of getInviteesNumber()" [ngValue]=number>{{ number }}</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-4 col-sm-4">
+                                <input type="submit" class="btn btn-default btn-block" value="I am Attending">
+                            </div>
+                            
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div *ngIf="getConfirmationMessage() != ''" class="col-md-8 col-md-offset-2 text-center fh5co-heading">
+            <h2>{{getConfirmationMessage()}}</h2>
+            <p>{{ invitation.inviteesConfirmed}} personas confirmadas</p>
+            <p (click)="change()" style="text-decoration: underline">Cambiar</p>
+        </div>
+        <div class="col-md-8 col-md-offset-2 text-center fh5co-heading" *ngIf="showErrorMessage">
+            <h3>Ocurrió un error con tu confirmación. Volvé a intentar o avisale a Daniel o Moni</h3>
+        </div>
+        
+    </div>
+</div>

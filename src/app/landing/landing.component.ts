@@ -23,7 +23,7 @@ export class LandingComponent implements OnInit {
   }
 
   onValidationSuccessful(invitation: Invitation) {
-    this.invitationDetails.invitation = invitation;
+    this.invitationDetails.setInvitation(invitation);
     this.showCodeValidatorContainer = false;
     this.showVideoContainer = true;
     this.videoPlayer.playVideo();

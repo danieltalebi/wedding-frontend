@@ -11,6 +11,7 @@ import { VideoPlayerComponent } from './video-player/video-player.component';
 import { InvitationValidatorComponent } from './invitation-validator/invitation-validator.component';
 import { LandingComponent } from './landing/landing.component';
 import { InvitationDetailsComponent } from './invitation-details/invitation-details.component';
+import { ConfirmInviteesComponent } from './confirm-invitees/confirm-invitees.component';
 
 
 @NgModule({
@@ -20,7 +21,8 @@ import { InvitationDetailsComponent } from './invitation-details/invitation-deta
     VideoPlayerComponent,
     InvitationValidatorComponent,
     LandingComponent,
-    InvitationDetailsComponent
+    InvitationDetailsComponent,
+    ConfirmInviteesComponent
   ],
   imports: [
     BrowserModule,

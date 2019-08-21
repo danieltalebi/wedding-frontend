@@ -1,3 +1,4 @@
+import { ConfirmInviteesComponent } from './../confirm-invitees/confirm-invitees.component';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { Status, InvitationSource } from './../model/Invitation';
 import { Component, OnInit, Injectable } from '@angular/core';
@@ -19,16 +20,21 @@ declare const simplyCountdown: any;
 export class InvitationDetailsComponent implements OnInit {
 
   invitation: Invitation;
-  validationForm: FormGroup;
 
-  constructor(private invitationService: InvitationsService,
-    private formBuilder: FormBuilder) {
-      this.validationForm = this.formBuilder.group({
-        inviteesConfirmed: Number
-      });
+  constructor() {
+    this.invitation = {
+      code: 'ABC',
+      displayName: 'Ariel y Vicky',
+      numberOfInviteesAllowed: 3,
+      inviteesConfirmed: 0,
+      status: Status.PENDING,
+      source: InvitationSource.FRONTEND
+    }
+    
   }
 
   ngOnInit() {
+
     const items = Array.from(document.getElementsByClassName('animate-box'));
     for (const item of items) {
       this.createWaypoint(item);
@@ -40,31 +46,12 @@ export class InvitationDetailsComponent implements OnInit {
       month: weddingDate.getMonth() + 1,
       day: weddingDate.getDate()
     });
-
-    this.invitation = {
-      code: 'ABC2',
-      displayName: 'Ariel y Vicky',
-      numberOfInviteesAllowed: 3,
-      inviteesConfirmed: 0,
-      status: Status.PENDING,
-      source: InvitationSource.FRONTEND
-    }
-  }
-
-  getInviteesNumber(): Array<number> {
-    return new Array<number>(5).fill(0).map((x, i) => i + 1)
-  }
-
-  onSubmit(formData) {
-    const numberOfInviteesConfirmed: number = formData.inviteesConfirmed;
-    this.invitationService.confirmAssistance(this.invitation.code, numberOfInviteesConfirmed);
   }
 
   createWaypoint(item: Element) {
     const waypoint = new Waypoint({
       element: item,
       handler: (direction) => {
-        console.log('The direction is ' + direction);
         if (direction === 'down') {
           item.classList.remove('fadeOutUp', 'animated');
           item.classList.add('fadeInUp', 'animated');
@@ -77,4 +64,7 @@ export class InvitationDetailsComponent implements OnInit {
     });
   }
 
+  setInvitation(invitation: Invitation) {
+    this.invitation = invitation;
+  }
 }
