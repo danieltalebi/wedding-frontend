@@ -38,6 +38,14 @@ export class ConfirmInviteesComponent implements OnInit {
     
     @Input('invitation')
     set setInvitation(invitation: Invitation) {
+      if (invitation.source == InvitationSource.FRONTEND) {
+        const backendInvitation = this.invitationService.findBackendInvitation(invitation.code)
+        if (backendInvitation == null) {
+          this.showErrorMessage = true;
+        } else {
+          invitation = backendInvitation;
+        }
+      }
       this.invitation = invitation;
       this.defaultNumberOfInvitees = this.invitation.numberOfInviteesAllowed;
       this.validationForm.controls['inviteesConfirmed'].patchValue(this.invitation.numberOfInviteesAllowed);
@@ -68,15 +76,15 @@ export class ConfirmInviteesComponent implements OnInit {
     
     
     showConfirmationForm() {
-      return this.invitation.status != Status.CONFIRMED;
+      return this.invitation.status != Status.CONFIRMED && this.invitation.source == InvitationSource.BACKEND;
     }
     
     getConfirmationMessage() {
       if (this.invitation.status == Status.CONFIRMED) {
         if (this.invitation.inviteesConfirmed > 0) {
-          return 'Prepará tus mejores pasos de baile!'
+          return '¡Prepará tus mejores pasos de baile!'
         } else {
-          return 'Que lastima no contar con vos'
+          return '¡Que lastima no contar con vos!'
         }
       } else {
         return '';

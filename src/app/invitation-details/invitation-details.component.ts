@@ -1,7 +1,7 @@
 import { ConfirmInviteesComponent } from './../confirm-invitees/confirm-invitees.component';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { Status, InvitationSource } from './../model/Invitation';
-import { Component, OnInit, Injectable } from '@angular/core';
+import { Component, OnInit, Injectable, Input } from '@angular/core';
 import { Invitation } from '../model/Invitation';
 import { InvitationsService } from '../invitation-validator/invitations.service';
 
@@ -19,18 +19,10 @@ declare const simplyCountdown: any;
 })
 export class InvitationDetailsComponent implements OnInit {
 
+  @Input()
   invitation: Invitation;
 
   constructor() {
-    this.invitation = {
-      code: 'ABC',
-      displayName: 'Ariel y Vicky',
-      numberOfInviteesAllowed: 3,
-      inviteesConfirmed: 0,
-      status: Status.PENDING,
-      source: InvitationSource.FRONTEND
-    }
-    
   }
 
   ngOnInit() {
@@ -64,7 +56,4 @@ export class InvitationDetailsComponent implements OnInit {
     });
   }
 
-  setInvitation(invitation: Invitation) {
-    this.invitation = invitation;
-  }
 }

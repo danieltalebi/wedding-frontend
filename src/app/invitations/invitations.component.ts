@@ -28,13 +28,6 @@ export class InvitationsComponent implements OnInit {
   }
 
   retrieveInvitations() {
-    console.log('Retrieving Invitations from Heroku');
-    const invitationsObservable: Observable<Invitation[]> = this.invitationsService.fetchInvitations();
-    invitationsObservable.subscribe(
-      (data: Invitation[]) => {
-        console.log('Invitation retrieved successfully');
-        this.invitationList = data;
-      });
   }
 
 

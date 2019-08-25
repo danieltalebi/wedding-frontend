@@ -11,9 +11,10 @@ import { InvitationDetailsComponent } from '../invitation-details/invitation-det
 })
 export class LandingComponent implements OnInit {
 
-  showCodeValidatorContainer = false;
+  invitation: Invitation;
+  showCodeValidatorContainer = true;
   showVideoContainer = false;
-  showInvitationDetailsContainer = true;
+  showInvitationDetailsContainer = false;
 
   constructor(private invitationValidator: InvitationValidatorComponent,
               private videoPlayer: VideoPlayerComponent,
@@ -23,10 +24,11 @@ export class LandingComponent implements OnInit {
   }
 
   onValidationSuccessful(invitation: Invitation) {
-    this.invitationDetails.setInvitation(invitation);
+    this.invitation = invitation;
     this.showCodeValidatorContainer = false;
-    this.showVideoContainer = true;
-    this.videoPlayer.playVideo();
+    // this.showVideoContainer = true;
+    // this.videoPlayer.playVideo();
+    this.onVideoFinished(); //TODO: roll this back
   }
 
   onVideoFinished() {

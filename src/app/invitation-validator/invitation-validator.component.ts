@@ -58,8 +58,6 @@ export class InvitationValidatorComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit() {
-    this.invitationsService.fetchInvitations()
-      .subscribe((data: Invitation[]) => this.backendInvitations = data);
   }
 
   ngAfterViewInit(): void {
@@ -79,8 +77,7 @@ export class InvitationValidatorComponent implements OnInit, AfterViewInit {
 
 
   findInvitation(invitationCode: string): Invitation {
-    const invitationList = this.backendInvitations != null ? this.backendInvitations : this.temporaryInvitations;
-    return invitationList.find(invitation => invitation.code.toUpperCase() === invitationCode.toUpperCase());
+    return this.invitationsService.findInvitationFromBackendOrCached(invitationCode);
   }
 
 
