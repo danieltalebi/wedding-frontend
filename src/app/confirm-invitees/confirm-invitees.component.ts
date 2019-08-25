@@ -76,7 +76,7 @@ export class ConfirmInviteesComponent implements OnInit {
     
     
     showConfirmationForm() {
-      return this.invitation.status != Status.CONFIRMED && this.invitation.source == InvitationSource.BACKEND;
+      return this.invitation.status != Status.CONFIRMED && this.invitation.source != InvitationSource.FRONTEND;
     }
     
     getConfirmationMessage() {
