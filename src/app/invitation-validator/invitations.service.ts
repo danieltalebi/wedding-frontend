@@ -1,4 +1,4 @@
-import { Invitation } from './../model/Invitation';
+import { Invitation, Status } from './../model/Invitation';
 import {Injectable, OnInit} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
@@ -34,31 +34,42 @@ export class InvitationsService implements OnInit {
     const invitationList = this.backendInvitations != null ? this.backendInvitations : this.cachedFrontendInvitations;
     return invitationList.find(invitation => invitation.code.toUpperCase() == code.toUpperCase())
   }
-
+  
   findBackendInvitation(code: string) {
     if (!!!this.backendInvitations) {
       return null
     }
     return this.backendInvitations.find(invitation => invitation.code.toUpperCase == code.toUpperCase)
   }
-
+  
   confirmAssistance(invitationCode: string, numberOfInviteesConfirmed: number) {
     console.log('Confirming ' + numberOfInviteesConfirmed + ' invitess for Invitation Code ' + invitationCode);
-      
+    
     let url = this.baseUrl + '/invitations/' + invitationCode + '/confirm/' + numberOfInviteesConfirmed;
-      
+    
     return this.httpClient.post(url, {});
   }
-   
+  
   private fetchInvitations(): Observable<Invitation[]> {
     console.log('Fetching Invitations');
     return this.httpClient.get<any>(this.baseUrl + '/invitations?page=0&size=1000&projection=InvitationProjection', {})
     .pipe(
-      map(res => res._embedded.invitations || []),
+      map(response => {
+        if (!!response._embedded.invitations) {
+          let invitations: Invitation[] = response._embedded.invitations;
+          invitations.forEach(invitation => {
+            //From the backend, the enum comes as string, we need to parse it
+            invitation.status = Status[invitation.status.toString()];
+          }
+          )
+          return <any>invitations;
+        }
+        return [];
+      }),
       catchError(error => error.message || error)
-      );
+    );
   }
     
     
-  }
+}
   
