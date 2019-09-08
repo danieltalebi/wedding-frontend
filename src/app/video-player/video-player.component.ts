@@ -11,7 +11,7 @@ import {Component, EventEmitter, Injectable, OnInit, Output} from '@angular/core
 export class VideoPlayerComponent implements OnInit {
 
   player: YT.Player;
-  id = 'ufuD50wC25w';
+  id = 'iJPjI_BjVMo';
   @Output()
   notify = new EventEmitter();
 
@@ -42,5 +42,9 @@ export class VideoPlayerComponent implements OnInit {
     iframe.width = '100%';
     iframe.height = '100%';
     player.playVideo();
+  }
+
+  skipVideo() {
+    this.notify.emit();
   }
 }

@@ -26,9 +26,8 @@ export class LandingComponent implements OnInit {
   onValidationSuccessful(invitation: Invitation) {
     this.invitation = invitation;
     this.showCodeValidatorContainer = false;
-    // this.showVideoContainer = true;
-    // this.videoPlayer.playVideo();
-    this.onVideoFinished(); //TODO: roll this back
+    this.showVideoContainer = true;
+    this.videoPlayer.playVideo();
   }
 
   onVideoFinished() {

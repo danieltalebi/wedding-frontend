@@ -1,7 +1,11 @@
-<div id="videoContainer" class="videoContainer">
-  <youtube-player
-    [videoId]="id"
-    (ready)="savePlayer($event)"
-    (change)="onStateChange($event)"
-  ></youtube-player>
-</div>
+<div class="main-container">
+  <div class="section-content">
+    <div id="video-wrapper">
+      <youtube-player [videoId]="id" (ready)="savePlayer($event)" (change)="onStateChange($event)"></youtube-player>
+    </div>
+    <div class="button-wrapper">
+      <input type="submit" class="btn btn-default btn-block" value="Saltear Video" (click)="skipVideo()">
+    </div>
+  </div>
+
+  </div>
