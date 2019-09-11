@@ -12,9 +12,9 @@ import { InvitationDetailsComponent } from '../invitation-details/invitation-det
 export class LandingComponent implements OnInit {
 
   invitation: Invitation;
-  showCodeValidatorContainer = true;
+  showCodeValidatorContainer = false;
   showVideoContainer = false;
-  showInvitationDetailsContainer = false;
+  showInvitationDetailsContainer = true;
 
   constructor(private invitationValidator: InvitationValidatorComponent,
               private videoPlayer: VideoPlayerComponent,
